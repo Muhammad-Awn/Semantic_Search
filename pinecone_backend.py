@@ -3,16 +3,17 @@ from pinecone import Pinecone, ServerlessSpec
 from flask_cors import CORS
 from sentence_transformers import SentenceTransformer
 import logging
-import api
+import os
 
 app = Flask(__name__)
 CORS(app)
 
 # Initialize logging
 logging.basicConfig(level=logging.DEBUG)
+api_key = os.getenv('API_KEY')
 
 # Initialize Pinecone
-pc = Pinecone(api_key=api.API_KEY)
+pc = Pinecone(api_key=api_key)
 spec = ServerlessSpec(cloud='aws', region='us-east-1')
 index_name = 'semantic-search'
 
