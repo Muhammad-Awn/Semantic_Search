@@ -1,5 +1,8 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim
+FROM python:3.11.2-slim-bullseye
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+RUN pip install --no-cache-dir sentence-transformers
 
 # Set the working directory in the container
 WORKDIR /app
